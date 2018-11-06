@@ -159,6 +159,10 @@ case "${target}" in
 	config_path="rtems"
 	;;
 
+  riscv*-*-elf*)
+	config_path="${config_path} posix"
+	;;
+
   *-*-elf*)
 	# ??? No target OS.  We could be targeting bare-metal kernel-mode,
 	# or user-mode for some custom OS.  If the target supports TAS,

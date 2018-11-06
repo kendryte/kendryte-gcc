@@ -14609,45 +14609,6 @@ _ACEOF
 case " $config_path " in
  *" posix "*)
   XPCFLAGS=""
-  CFLAGS="$CFLAGS -pthread"
-  cat confdefs.h - <<_ACEOF >conftest.$ac_ext
-/* end confdefs.h.  */
-#include <pthread.h>
-      void *g(void *d) { return NULL; }
-int
-main ()
-{
-pthread_t t; pthread_create(&t,NULL,g,NULL);
-  ;
-  return 0;
-}
-_ACEOF
-if ac_fn_c_try_link "$LINENO"; then :
-  XPCFLAGS=" -pthread"
-else
-  CFLAGS="$save_CFLAGS $XCFLAGS" LIBS="-lpthread $LIBS"
-     cat confdefs.h - <<_ACEOF >conftest.$ac_ext
-/* end confdefs.h.  */
-#include <pthread.h>
-        void *g(void *d) { return NULL; }
-int
-main ()
-{
-pthread_t t; pthread_create(&t,NULL,g,NULL);
-  ;
-  return 0;
-}
-_ACEOF
-if ac_fn_c_try_link "$LINENO"; then :
-
-else
-  as_fn_error "Pthreads are required to build libatomic" "$LINENO" 5
-fi
-rm -f core conftest.err conftest.$ac_objext \
-    conftest$ac_exeext conftest.$ac_ext
-fi
-rm -f core conftest.err conftest.$ac_objext \
-    conftest$ac_exeext conftest.$ac_ext
   CFLAGS="$save_CFLAGS $XPCFLAGS"
   ;;
 esac
