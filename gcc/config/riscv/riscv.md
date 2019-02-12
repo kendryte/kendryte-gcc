@@ -733,12 +733,7 @@
 	(div:ANYF (match_operand:ANYF 1 "register_operand" " f")
 		  (match_operand:ANYF 2 "register_operand" " f")))]
   "TARGET_HARD_FLOAT && TARGET_FDIV"
-{
-    if (<MODE>mode == SFmode) 
-      return "fdiv.s\t%0,%1,%2\;fcvt.d.s\t%0,%0\;fcvt.s.d\t%0,%0"; 
-    else 
-      return "fdiv.d\t%0,%1,%2"; 
-}
+  "fdiv.<fmt>\t%0,%1,%2"
   [(set_attr "type" "fdiv")
    (set_attr "mode" "<UNITMODE>")])
 
@@ -754,10 +749,7 @@
 	(sqrt:ANYF (match_operand:ANYF 1 "register_operand" " f")))]
   "TARGET_HARD_FLOAT && TARGET_FDIV"
 {
-    if (<MODE>mode == SFmode) 
-      return "fsqrt.s\t%0,%1\;fcvt.d.s\t%0,%0\;fcvt.s.d\t%0,%0"; 
-    else 
-      return "fsqrt.d\t%0,%1"; 
+    return "fsqrt.<fmt>\t%0,%1";
 }
   [(set_attr "type" "fsqrt")
    (set_attr "mode" "<UNITMODE>")])
